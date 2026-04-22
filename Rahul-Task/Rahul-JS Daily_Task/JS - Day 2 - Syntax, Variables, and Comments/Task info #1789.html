@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<h2>JavaScript Tasks</h2>
+<p>let, const and var keywird use With Singl and multi line comment</p>
+<p id="demo"></p>
+<button id="btn" onclick="myFun()" >Click</button>
+<script>
+//Create variable with var keyword
+var x = "Demo Text";
+
+//Create variable with let keyword, store p tag id 
+let comman = document.getElementById("demo");
+comman.innerHTML = x;
+
+//Create constant varible with assign 5 value
+const y = 5;
+//Create function for button click
+function myFun() {
+	comman.innerText = x + y;	
+	document.getElementById("btn").innerHTML = y;
+} 
+/* run time add click event on button
+
+let btn = document.getElementById("btn");
+btn.addEventListener("click", function() {
+	comman.innerText = x + y;
+    this.innerHTML = y;
+});
+*/
+</script>
+</body>
+</html>
