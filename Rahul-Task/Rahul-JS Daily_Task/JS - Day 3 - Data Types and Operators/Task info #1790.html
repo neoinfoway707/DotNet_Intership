@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<h1>Task on Data Types and Operators</h1>
+<p id="demo"></p>
+
+<script>
+const demo = document.getElementById("demo");
+let text = "";
+
+//Create Array
+let arr = new Array("Rajkot","Gujarat",21);
+//Use array litral
+let new_arr = ["Rajkot","Gujarat",21];
+
+//Create Object
+const obj = new Object({city: "Rajkot", state : "Gujarat", date: 21});
+//Use object literal
+const new_obj = { city: "Rajkot", state : "Gujarat", date: 21};
+
+let type = typeof arr;
+text = "typeof arr variable is: " + type;
+
+text += "<br/>new_obj Object Data is: " + Object.values(new_obj);
+
+//Math Operation
+let result = new_obj["date"] + 2;
+text += "<br/> Math operation on date property of new_obj Object: " + result;
+
+//Logical Comparation
+let data = new_obj.date == 21 ? "Today " : "not Today";
+text += "<br/> Logical comparisons on Date property : " + data;
+
+//Multiple Condition
+if(new_obj.date == 21 && new_obj.city == "Rajkot" || new_obj.state == "Rajasthan") {
+	text += " <br/>Multiple Condition on new_obj's property";
+}
+
+demo.innerHTML = text;
+</script>
+</body>
+</html>
+
+
