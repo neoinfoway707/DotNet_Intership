@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Task 1791</title>
+</head>
+
+<body>
+    <h2>JavaScript Tasks</h2>
+    <p>condition and switch statement , for and while loop and truthy and falsy value</p>
+    Enter Age: <input id="txtAge" type="text" /><br />
+
+    <button id="btn" onclick="myFun()">Click</button>
+    <p id="demo"></p>
+
+    <script>
+        let demo = document.getElementById("demo");
+        let text;
+        function myFun() {
+            let ageInput = document.getElementById("txtAge").value;
+            let age = Number(ageInput);
+            if (ageInput == "" || age <= 0) {
+                text = "Valid Age enter";
+            } else {
+                if (age <= 15) {
+                    text = "You are not eligible";
+                } else if (age >= 16 && age <= 20) {
+                    text = "You are eligible";
+                } else {
+                    text = "Entered number not in range"
+                }
+            }
+
+            text += "\nUsing Switch statement :";
+            switch (age) {
+                case 18:
+                    text += "You are now adult";
+                    break;
+                case 17:
+                    text += "You are now teenage";
+                    break;
+                default:
+                    text += "Enter 17 or 18";
+                    break;
+            }
+            myLoop();
+            demo.innerText = text;
+        }
+
+        function myLoop() {
+            text += "\nUsing while with object: ";
+            const obj = { city: "Rajkot", state: "Gujarat", country: "India" };
+            let i = 0;
+            const keys = Object.keys(obj);
+
+            while (i < keys.length) {
+                let key = keys[i];
+                text += key + " -> " + obj[key] + ", ";
+                i++;
+            }
+
+            text += "\nUsing while with Array: ";
+            const arr = ["One", "Two", "Three"]
+            let a = 0;
+
+            while (a < arr.length) {
+                text += " " + arr[a];
+                a++;
+            }
+        }
+    </script>
+</body>
+
+</html>
