@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>JS Task Day 6</title>
+</head>
+<body>
+    <h1>Objects And Array Example</h1>
+    <p id="demo"></p>
+    <script>
+        let demo = document.getElementById("demo");
+        //Create object
+        const obj = {
+             Fname: "Rajkot", 
+             Lname: "Gujarat",
+             Age: 79,
+             FullNm: function () {
+                return this.Fname+" "+this.Lname;
+             }
+            };
+        //get properties value
+        text = "Properties : <br>Fname: " + obj.Fname + ", Lname: " + obj.Lname + " Age: " + obj.Age;
+        //get value 
+        text += "<br>Using Methos: <br>FullNm " + obj.FullNm();
+
+        //Create Array using Array Literal
+        let arr = [12,45,78,32,65,98,25,30];
+        arr[5] = 52; //change element value
+        let pop_arr = arr.pop(); //remove last element from array
+        arr.push(24); //add elememnt to end of array
+        let Spliced = arr.splice(2,2,[77]); // add and remove two element in array
+        let shifted = arr.shift(); //remove element from start of array
+        arr.unshift(25); //Add element to start of array
+
+        text += "<br><br> Array check: " +Array.isArray(arr);
+        text += "<br> Now Array is: " + arr +  " <br>Array length: " + arr.length; 
+        text += "<br> Pop element:"+pop_arr+", Spliced elements: "+Spliced+", shifted element: "+shifted;
+        text += "<br> After Operation Array is: " + arr
+        demo.innerHTML = text;
+    </script>
+</body>
+</html>
