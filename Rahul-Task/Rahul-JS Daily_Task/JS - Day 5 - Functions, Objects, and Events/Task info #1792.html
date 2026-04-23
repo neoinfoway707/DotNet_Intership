@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>JS Day 5 Task</title>
+</head>
+<body>
+    <h2>JS Task for function, scope and hoisting</h2>
+    Enter Number 1: <input id="txtNum1" type="text" /><br>
+    Enter Number 2: <input id="txtNum2" type="text" /><br>
+    <button id="btnClick" onclick="Click()">Calculate</button><br>
+
+    <button id="btnArrow" onclick="ArrowFun()">Arrow Function</button><br>
+    <p id="demo"></p>
+    <script>
+        let demo = document.getElementById("demo");
+
+        let text = "";
+        //create function with parameters and return values 
+
+        function Click() {
+            let num1 = document.getElementById("txtNum1").value;
+            let num2 = document.getElementById("txtNum2").value;
+            let result = Multi(Number(num1), Number(num2));
+            text = result.toString();
+            demo.innerHTML = text;
+        }
+        //Function Declarations (Hoisted)
+        function Multi(Num1, Num2) { return Num1 * Num2 }
+
+        function ArrowFun() {
+            let num1 = document.getElementById("txtNum1").value;
+            let num2 = document.getElementById("txtNum2").value;
+            let result = Multi1(Number(num1), Number(num2));
+            text += "<br> Using Arrow Function :" + result.toString();
+            demo.innerHTML = text;
+        }
+        //Regular functions to Arrow functions.
+        const Multi1 = (n1, n2) => n1 * n2;
+
+        // Hoisting with var
+        var_demo = 5;
+        //Testing var ,let and const scope
+        var var_demo;
+        let let_demo = 5;
+        const const_demo = 10; //can not change value of this variable
+
+        function demo_scope() {
+            var_demo = 15;
+            let_demo = 7;
+            //const_demo = 15; not change value of this variable
+            alert("Const var:" + const_demo + " Let var: " + let_demo + " Var variable:" + var_demo);
+        }
+        var_demo = 17;
+        let_demo = 12;
+        demo_scope();
+    </script>
+</body>
+
+</html>
