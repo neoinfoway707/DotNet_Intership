@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>JS Day 7 Task</title>
+</head>
+
+<body>
+    <h1>JS Events, Strings & String Methods</h1>
+    <p id="demo"></p>
+    <button id="btn" onclick="clickBtn(this)">click</button>
+    <button id="btnHover">hover</button>
+    <script>
+        let text = "";
+        let demo = document.getElementById("demo");
+        
+        //string Manipulation
+        text += "<b>String Manipulation</b>";
+        const str = "Demo Text of String";
+        text += "<br> Original String: " + str;
+        let split_str = str.split(" ");
+        text += "<br>String Split: " + split_str;
+        let slice_str = str.slice(-15, -10);
+        let substr_str = str.substr(-6);
+        text += "<br>String Slice: " + slice_str + "<br>String Substr: " + substr_str;
+
+        //string Format
+        text += "<br><br><b>String Format</b>";
+        let data = "   123-456-7890   ";
+        text += "<br>Origin data: " + data;
+        let repeat_data = data.repeat(2);
+        text += "<br> repeat data: " + repeat_data;
+        let trim_data = data.trim();
+        let replace_data = trim_data.replace("123-", "(123) ");
+        text += "<br>After Formatting: " + replace_data;
+
+        demo.innerHTML = text;
+        //click function
+        function clickBtn(id) {
+            id.innerHTML = "Butotn click";
+        }
+        //click function create run time
+        document.getElementById("btn").addEventListener("click", function () {
+            text = "Clicked Button";
+            demo.innerText = text;
+            alert("Runtime create click event call");
+        });
+
+        //mouseover function create run time
+        let btnHover = document.getElementById("btnHover");
+        btnHover.addEventListener("mouseover", over);
+        function over() {
+            btnHover.innerText = "Thank You";
+            alert("Hover successfully.");
+        }
+    </script>
+</body>
+
+</html>
