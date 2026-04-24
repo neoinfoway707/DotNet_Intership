@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>JS Day 8 Task</title>
+</head>
+
+<body>
+    <h1>DOM Overview, DOM Nodes & Elements</h1>
+    <p id="text">Use getElementById and querySelector.</p>
+    <p class="color">Change style of element dynamically using querySelector</p>
+    <p id="demo" class="color"></p>
+    <button onclick="change()">Click</button>
+    <script>
+        function change() {
+            //Use of getElementById() method
+            let demo = document.getElementById("demo");
+            
+            //Using querySelector() method 
+            let selector = document.querySelector(".color");
+
+            //Modify element text dynamically
+            demo.innerText = "Using id to add/change content with style";
+            demo.style.color = "blue";
+            demo.style.padding = "10px";
+            demo.style.backgroundColor = "lightblue";
+
+            //Modify element styled dynamically
+            selector.style.color = "red";
+            selector.style.fontSize = "20px";
+
+            //Using getElementById() for change content of element
+            document.getElementById("text").innerText = "Here, I am use getElementById for change content";
+        }
+    </script>
+
+</body>
+
+</html>
