@@ -57,36 +57,51 @@ function loginValidation() {
     validateFields.forEach(field => {
         const input = document.getElementById(field.id);
         if (input.value.trim() == "") {
-            showError(field.id);
+            showError(field.id, field.emptyMsg);
             isvalid = false;
         } else if (input.value != field.correctValue) {
-            showError(field.id);
+            showError(field.id, field.issueMsg);
             isvalid = false;
         }
-    })
+    });
     if (!isvalid) return false;
     window.location.href = "logout.html?userEmail=" + encodeURIComponent(LoginEmail.value);
     return false;
 }
 
 //display error message
-function showError(elementId) {
-    if (elementId == "Gender") {
-        document.querySelector(".gender-group").classList.add("is-invalid");
+function showError(elementId, message) {
+    if (elementId === "Gender") {
+        Male.classList.add("is-invalid");
+        Female.classList.add("is-invalid");
+        const icon = document.getElementById("GenderIcon");
+        icon.style.display = "inline";
+        document.getElementById("GenderMsg").textContent = message;
         return;
-    } if (elementId == "Hobbies") {
-        document.querySelector(".hobbies-group").classList.add("is-invalid");
+    }
+    if (elementId === "Hobbies") {
+        chkSupports.classList.add("is-invalid");
+        chkReading.classList.add("is-invalid");
+        chkGames.classList.add("is-invalid");
+        const icon = document.getElementById("HobbiesIcon");
+        icon.style.display = "inline";
+        document.getElementById("HobbiesMsg").textContent = message;
         return;
     }
     const input = document.getElementById(elementId);
-    input.classList.add("is-invalid");
+    if (input) {
+        input.classList.add("is-invalid");
+        const msg = document.getElementById(elementId + "Msg");
+        if (msg) msg.textContent = message;
+    }
 }
 
-//clear all error message
 function clearAllErrors() {
     document.querySelectorAll(".is-invalid").forEach(el => el.classList.remove("is-invalid"));
+    document.querySelectorAll(".tooltip-msg").forEach(el => el.textContent = "");
+    document.getElementById("GenderIcon").style.display = "none";
+    document.getElementById("HobbiesIcon").style.display = "none";
 }
-
 //clear specific field's error message
 function clearError(elementId) {
     const input = document.getElementById(elementId);
@@ -127,14 +142,15 @@ Filechoose.addEventListener('change', function (event) {
         Filechoose.value = "";
         ImgPreview.style.display = "none";
         ImgPreview.src = "";
-        showError("File");
+        showError("File", "Image size too large! Choose image under 2MB.");
+        return;
     }
     const allowedTypes = ['image/png', 'image/gif', 'image/jpeg'];
     if (!allowedTypes.includes(file.type)) {
         Filechoose.value = "";
         ImgPreview.style.display = "none";
         ImgPreview.src = "";
-        showError("File");
+        showError("File", "Select a valid image (jpg, png, or gif).");
         return;
     }
     clearError("File");
@@ -170,10 +186,10 @@ function validation() {
         isValid = false;
 
     if (ConfirmPas.value.trim() === "") {
-        showError("ConfirmPas");
+        showError("ConfirmPas", "Required Confirm Password.");
         isValid = false;
     } else if (Pass.value !== ConfirmPas.value) {
-        showError("ConfirmPas");
+        showError("ConfirmPas", "Password and Confirm Password is not same.");
         isValid = false;
     }
 
@@ -181,7 +197,7 @@ function validation() {
         isValid = false;
 
     if (!(Male.checked || Female.checked)) {
-        showError("Gender");
+        showError("Gender", "Select Gender.");
         isValid = false;
     }
 
@@ -191,23 +207,23 @@ function validation() {
         isValid = false;
 
     if (birthTime.value === "") {
-        showError("birthTime");
+        showError("birthTime", "Select Birth Time.");
         isValid = false;
     }
 
     if (!(chkReading.checked || chkSupports.checked || chkGames.checked)) {
-        showError("Hobbies");
+        showError("Hobbies", "Select Hobbies.");
         isValid = false;
     }
 
     if (Country.value === "") {
-        showError("Country");
+        showError("Country", "Select Country.");
         isValid = false;
     } else if (State.value === "") {
-        showError("State");
+        showError("State", "Select State.");
         isValid = false;
     } else if (City.value === "") {
-        showError("City");
+        showError("City", "Select City.");
         isValid = false;
     }
 
@@ -215,7 +231,7 @@ function validation() {
         isValid = false;
 
     if (Color.value === "#000000") {
-        showError("Color");
+        showError("Color", "Select a Color other than black.");
         isValid = false;
     }
 
@@ -223,7 +239,7 @@ function validation() {
         isValid = false;
 
     if (Range.value === "0") {
-        showError("Range");
+        showError("Range", "Select Rate from 1 to 10.");
         isValid = false;
     }
 
@@ -231,18 +247,13 @@ function validation() {
         isValid = false;
 
     if (Filechoose.files.length === 0) {
-        showError("File");
+        showError("File", "Select an image under 2MB.");
         isValid = false;
     }
 
     if (!isValid) {
         const firstElement = document.querySelector(".is-invalid");
-        if (firstElement.classList.contains("gender-group")) {
-            Male.focus();
-        } else if (firstElement.classList.contains("hobbies-group")) {
-            chkSupports.focus();
-        }
-        firstElement.focus();
+        if (firstElement) firstElement.focus();
         return false;
     }
     window.location.href = "Success.html?userEmail=" + encodeURIComponent(Email.value);
@@ -251,18 +262,20 @@ function validation() {
 function validate(value, fieldName, element, pattern = null) {
     const inputField = document.getElementById(element);
     if (value == "" || value.trim() == "") {
-        showError(element);
+        showError(element, `Required ${fieldName}`);
         return false;
     }
     if (fieldName == "Address") {
         if (value.length < 5 || value.length > 60) {
-            showError(element);
+            showError(element, `${fieldName} must be less then 60 & greater then 5 character.`);
+            //inputField.focus();
             return false;
         }
         return true;
     } else if (fieldName == "Age") {
         if (Number(value) < 16 || Number(value) > 100) {
-            showError(element);
+            showError(element, `${fieldName} must be less then 100 & greater then 16 Number.`);
+            //inputField.focus();
             return false;
         }
         return true;
@@ -272,26 +285,31 @@ function validate(value, fieldName, element, pattern = null) {
         const selectedYear = selectedDate.getFullYear();
 
         if (selectedDate > today) {
-            showError(element);
+            showError(element, `${fieldName} can not be future date`);
+            //inputField.focus();
             return false;
         } else if (selectedYear > 2006 || selectedYear < 2000) {
-            showError(element);
+            showError(element, `${fieldName} Year must between 2000 to 2006.`);
+            //inputField.focus();
             return false;
         }
         return true;
     } else if (fieldName == "Search") {
         if (value.trim().length < 3) {
-            showError(element);
+            showError(element, `${fieldName} at least 3 character.`);
+            //inputField.focus();
             return false;
         }
         return true;
     }
     if (!pattern || !pattern.test(value.trim())) {
         if (fieldName == "Password") {
-            showError(element);
+            showError(element, `Enter minimum 8 character long strong ${fieldName}.`);
+            //inputField.focus();
             return false;
         } else {
-            showError(element)
+            showError(element, `Enter Valid ${fieldName}`)
+            //inputField.focus();
             return false;
         }
     }
