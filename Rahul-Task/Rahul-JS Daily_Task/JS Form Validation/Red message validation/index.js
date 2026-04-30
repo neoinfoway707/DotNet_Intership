@@ -64,32 +64,46 @@ function loginValidation() {
             isvalid = false;
         }
     })
-    if (!isvalid) return false;
+    if (!isvalid) {
+        const firstElement = document.getElementById("myFormLogin").querySelector(".is-invalid");
+        if (firstElement) firstElement.focus();
+        return false;
+    }
     window.location.href = "logout.html?userEmail=" + encodeURIComponent(LoginEmail.value);
     return false;
 }
 
 //display error message
 function showError(elementId, message) {
+    if (elementId == "Gender") {
+        Male.classList.add(".is-invalid");
+        Female.classList.add(".is-invalid");
+        document.getElementById("MaleErr").textContent = message;
+        return;
+    }
+    if (elementId == "Hobbies") {
+        chkSupports.classList.add("is-invalid");
+        chkReading.classList.add("is-invalid");
+        chkGames.classList.add("is-invalid");
+        document.getElementById("chkSupportsErr").textContent = message;
+        return;
+    }
     const input = document.getElementById(elementId);
     const error = document.getElementById(elementId + "Err");
-    input.classList.add("is-invalid");
-    error.textContent = message;
+    if (error) error.textContent = message;
 }
 
 //clear all error message
 function clearAllErrors() {
     document.querySelectorAll(".is-invalid").forEach(el => el.classList.remove("is-invalid"));
-    document.querySelectorAll(".invalid-feedback").forEach(el => el.textContent = "\u00A0");
-    document.querySelectorAll(".text-danger").forEach(el => el.textContent = "\u00A0");
+    document.querySelectorAll(".invalid-feedback").forEach(el => el.textContent = "");
 }
 
 //clear specific field's error message
 function clearError(elementId) {
     const input = document.getElementById(elementId);
     const error = document.getElementById(elementId + "Err");
-    input.classList.remove("is-invalid");
-    error.textContent = ""; // non-breaking space — keeps height
+    if (error) error.textContent = "";
 }
 //live preview password is strog or coorect
 Pass.addEventListener('input', () => {
@@ -127,6 +141,7 @@ Filechoose.addEventListener('change', function (event) {
         ImgPreview.style.display = "none";
         ImgPreview.src = "";
         showError("File", "Image size too large! Choose image under 2MB.");
+        return;
     }
     const allowedTypes = ['image/png', 'image/gif', 'image/jpeg'];
     if (!allowedTypes.includes(file.type)) {
@@ -235,8 +250,8 @@ function validation() {
     }
 
     if (!isValid) {
-        const firstElement = document.querySelector(".is-invalid");
-        firstElement.focus();
+        const firstElement = document.getElementById("myFormReg").querySelector(".is-invalid");
+        if (firstElement) firstElement.focus();
         return false;
     }
     window.location.href = "Success.html?userEmail=" + encodeURIComponent(Email.value);
