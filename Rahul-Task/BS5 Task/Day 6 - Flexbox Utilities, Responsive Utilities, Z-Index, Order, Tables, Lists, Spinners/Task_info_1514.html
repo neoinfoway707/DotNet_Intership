@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Flexbox Utilities, Responsive Utilities, Z-Index, Order, Tables, Lists, Spinners</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+
+<body>
+    <div class="container">
+        <div class="d-flex bg-secondary p-3">
+            <div class="p-2 bg-primary">Flexbox 1</div>
+            <div class="p-2 bg-warning">Flexbox 2</div>
+            <div class="p-2 bg-info">Flexbox 3</div>
+        </div>
+
+        <br>
+        <div class="row">
+            <div class="col-3">
+                <h3>Inline Flex</h3>
+                <div class="d-inline-flex bg-secondary p-3">
+                    <div class="p-2 bg-primary">Flexbox 1</div>
+                    <div class="p-2 bg-warning">Flexbox 2</div>
+                    <div class="p-2 bg-info">Flexbox 3</div>
+                </div>
+            </div>
+            <div class="col-9">
+                <h3>Flex row reverse with flex fill</h3>
+                <div class="d-flex flex-row-reverse bg-secondary p-3">
+                    <div class="p-2 bg-primary">Flexbox 1</div>
+                    <div class="p-2 bg-warning">Flexbox 2</div>
+                    <div class="p-2 bg-info flex-fill">Flexbox 3</div>
+                </div>
+            </div>
+        </div>
+
+        <br>
+        <div class="row">
+            <div class="col-3">
+                <h3>Flex Column reverse</h3>
+                <div class="d-flex flex-column-reverse bg-secondary p-3">
+                    <div class="p-2 bg-primary">Flexbox 1</div>
+                    <div class="p-2 bg-warning">Flexbox 2</div>
+                    <div class="p-2 bg-info">Flexbox 3</div>
+                </div>
+            </div>
+            <div class="col-3">
+                <h3>Flex align items center</h3>
+                <div class="d-flex align-items-center bg-secondary p-3" style="height: 150px;">
+                    <div class="p-2 bg-primary">Flexbox 1</div>
+                    <div class="p-2 bg-warning">Flexbox 2</div>
+                    <div class="p-2 bg-info ">Flexbox 3</div>
+                </div>
+            </div>
+            <div class="col-3">
+                <h3>Flex align items end</h3>
+                <div class="d-flex align-items-end bg-secondary p-3" style="height: 150px;">
+                    <div class="p-2 bg-primary">Flexbox 1</div>
+                    <div class="p-2 bg-warning">Flexbox 2</div>
+                    <div class="p-2 bg-info ">Flexbox 3</div>
+                </div>
+            </div>
+            <div class="col-3">
+                <h3>Flex align items stretch</h3>
+                <div class="d-flex align-items-stretch bg-secondary p-3" style="height: 150px;">
+                    <div class="p-2 bg-primary">Flexbox 1</div>
+                    <div class="p-2 bg-warning">Flexbox 2</div>
+                    <div class="p-2 bg-info ">Flexbox 3</div>
+                </div>
+            </div>
+        </div>
+
+        <br>
+        <div class="row">
+            <div class="col-4">
+                <h3>justify content start with Responsive</h3>
+                <div class="d-flex bg-secondary p-3 justify-content-start">
+                    <div class="p-2 bg-primary order-lg-3">Flexbox 1</div>
+                    <div class="p-2 bg-warning order-xxl-2">Flexbox 2</div>
+                    <div class="p-2 bg-info order-md-1">Flexbox 3</div>
+                </div>
+            </div>
+            <div class="col-4">
+                <h3>justify content end</h3>
+                <div class="d-flex bg-secondary p-3 justify-content-end">
+                    <div class="p-2 bg-primary ">Flexbox 1</div>
+                    <div class="p-2 bg-warning ">Flexbox 2</div>
+                    <div class="p-2 bg-info">Flexbox 3</div>
+                </div>
+            </div>
+            <div class="col-4">
+                <h3>justify content center</h3>
+                <div class="d-flex bg-secondary p-3 justify-content-center">
+                    <div class="p-2 bg-primary ">Flexbox 1</div>
+                    <div class="p-2 bg-warning">Flexbox 2</div>
+                    <div class="p-2 bg-info">Flexbox 3</div>
+                </div>
+            </div>
+        </div>
+
+        <br>
+        <div class="row">
+            <div class="col-6">
+                <h3>justify content between</h3>
+                <div class="d-flex bg-secondary p-3 justify-content-between">
+                    <div class="p-2 bg-primary ">Flexbox 1</div>
+                    <div class="p-2 bg-warning">Flexbox 2</div>
+                    <div class="p-2 bg-info">Flexbox 3</div>
+                </div>
+            </div>
+            <div class="col-6">
+                <h3>justify content around with Responsive</h3>
+                <div class="d-flex bg-secondary p-3 justify-content-around flex-lg-row-reverse">
+                    <div class="p-2 bg-primary ">Flexbox 1</div>
+                    <div class="p-2 bg-warning">Flexbox 2</div>
+                    <div class="p-2 bg-info">Flexbox 3</div>
+                </div>
+            </div>
+        </div>
+
+        <br>
+        <div class="row">
+            <div class="col-3 mt-3">
+                <h3>Responsive Flex</h3>
+                <div class="d-flex p-3 bg-secondary flex-xxl-row-reverse">
+                    <div class="p-2 bg-primary ">Flex 1</div>
+                    <div class="p-2 bg-warning">Flex 2</div>
+                    <div class="p-2 bg-info">Flex 3</div>
+                </div>
+            </div>
+            <div class="col-3">
+                <h3>Flex nowrap(default)</h3>
+                <div class="d-flex p-3 bg-secondary text-white flex-nowrap w-75">
+                    <div class="p-2 bg-primary">Flex 1</div>
+                    <div class="p-2 bg-warning">Flex-2</div>
+                    <div class="p-2 bg-info">Flex 3</div>
+                    <div class="p-2 bg-danger">Flex 4</div>
+                    <div class="p-2 bg-dark">Flex 5</div>
+                    <div class="p-2 bg-success">Flex 6</div>
+                </div>
+            </div>
+            <div class="col-3">
+                <h3>Flex wrap</h3>
+                <div class="d-flex p-3 bg-secondary text-white flex-wrap w-75">
+                    <div class="p-2 bg-primary">Flex 1</div>
+                    <div class="p-2 bg-warning">Flex-2</div>
+                    <div class="p-2 bg-info">Flex 3</div>
+                    <div class="p-2 bg-danger">Flex 4</div>
+                    <div class="p-2 bg-dark">Flex 5</div>
+                    <div class="p-2 bg-success">Flex 6</div>
+                </div>
+            </div>
+            <div class="col-3">
+                <h3>Flex wrap reverse</h3>
+                <div class="d-flex p-3 bg-secondary text-white flex-wrap-reverse w-75">
+                    <div class="p-2 bg-primary">Flex 1</div>
+                    <div class="p-2 bg-warning">Flex-2</div>
+                    <div class="p-2 bg-info">Flex 3</div>
+                    <div class="p-2 bg-danger">Flex 4</div>
+                    <div class="p-2 bg-dark">Flex 5</div>
+                    <div class="p-2 bg-success">Flex 6</div>
+                </div>
+            </div>
+        </div>
+
+        <br><br>
+        <div class="row justify-content-center">
+            <div class="col-2">
+                <h3>Visibility class</h3>
+                <p class="invisible">I am invisible</p>
+                <p class="visible">I am Visible</p>
+            </div>
+            <div class="col-2">
+                <h3>Z-Index</h3>
+                <div class="p-5 bg-primary" style="width: 120px;height: 120px;z-index: 1;position: absolute;"></div>
+                <div class="p-4 bg-success"
+                    style="width: 60px;height: 60px;z-index: 2;position: absolute;margin: 60px 0px;">
+                </div>
+                <div class="p-4 bg-danger"
+                    style="width: 60px;height: 60px;z-index: 5;position: absolute;margin:0px 60px;">
+                </div>
+                <div class="p-4 bg-dark"
+                    style="width: 60px;height: 60px;z-index: 4;position: absolute; margin: 60px 60px;"></div>
+            </div>
+        </div>
+    </div>
+
+    <br><br>
+    <div class="container">
+        <h3>Bootstrap styled tables</h3>
+        <table class="table table-dark table-hover table-striped ">
+            <thead class="table-secondary">
+                <tr>
+                    <th>No</th>
+                    <th>Name</th>
+                    <th>Email</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>1</td>
+                    <td>Abc</td>
+                    <td>abc123@gmail.com</td>
+                </tr>
+                <tr>
+                    <td>2</td>
+                    <td>Def</td>
+                    <td>def123@gmail.com</td>
+                </tr>
+                <tr>
+                    <td>3</td>
+                    <td>Ghi</td>
+                    <td>ghi123@gmail.com</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <table class="table table-borderless table-hover table-sm table-responsive-md table-secondary">
+            <thead class="table-primary">
+                <tr>
+                    <th>No</th>
+                    <th>Name</th>
+                    <th>Email</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>1</td>
+                    <td>Abc</td>
+                    <td>abc123@gmail.com</td>
+                </tr>
+                <tr>
+                    <td>2</td>
+                    <td>Def</td>
+                    <td>def123@gmail.com</td>
+                </tr>
+                <tr>
+                    <td>3</td>
+                    <td>Ghi</td>
+                    <td>ghi123@gmail.com</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <br>
+        <h3>List groups</h3>
+        <div class="list-group list-group-item-primary">
+            <a href="" class="list-group-item list-group-item-action d-flex justify-content-between active">Active
+                <span class="badge bg-danger rounded-pill">40</span>
+            </a>
+            <a href="" class="list-group-item list-group-item-action">Second</a>
+            <a href="" class="list-group-item list-group-item-action">Third</a>
+            <a href="" class="list-group-item list-group-item-action disabled">Disabled</a>
+        </div>
+        <br>
+        <ul class="list-group list-group-numbered list-group-flush">
+            <li class="list-group-item list-group-item-primary">First</li>
+            <li class="list-group-item list-group-item-warning">Second</li>
+            <li class="list-group-item list-group-item-secondary">Third</li>
+            <li class="list-group-item list-group-item-success">Forth</li>
+            <li class="list-group-item list-group-item-danger">Fifth</li>
+        </ul>
+    </div>
+
+    <br>
+    <div class="container mb-5">
+        <h3>Spinners</h3>
+        <div class="spinner-border spinner-border-xxl text-dark"></div>
+        <div class="spinner-border spinner-border-xxl text-primary"></div>
+        <div class="spinner-border spinner-border-xxl text-secondary"></div>
+        <div class="spinner-border spinner-border-xxl text-warning"></div>
+        <div class="spinner-border spinner-border-xxl text-danger"></div>
+        <div class="spinner-border spinner-border-xxl text-success"></div>
+        <div class="spinner-border spinner-border-xxl text-info"></div>
+
+        <div class="spinner-grow spinner-grow-xxl text-dark"></div>
+        <div class="spinner-grow spinner-grow-xxl text-secondary"></div>
+        <div class="spinner-grow spinner-grow-xxl text-warning"></div>
+        <div class="spinner-grow spinner-grow-xxl text-primary"></div>
+        <div class="spinner-grow spinner-grow-xxl text-danger"></div>
+        <div class="spinner-grow spinner-grow-xxl text-success"></div>
+        <div class="spinner-grow spinner-grow-xxl text-info"></div>
+        <br>
+        <button class="btn btn-primary">
+            <span class="spinner-border spinner-border-sm"></span> Loading...
+        </button>
+        <button class="btn btn-primary">
+            <span class="spinner-grow spinner-grow-sm"></span> Searching...
+        </button>
+        <button class="btn btn-primary" disabled>
+            <span class="spinner-border spinner-border-sm"></span> Loading...
+        </button>
+        <button class="btn btn-primary disabled">
+            <span class="spinner-grow spinner-grow-sm"></span> Searching...
+        </button>
+    </div>
+</body>
+
+</html>
