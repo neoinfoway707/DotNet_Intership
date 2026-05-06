@@ -1,0 +1,59 @@
+body div {
+    padding: 50px;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+[title="Title"] {
+    font-size: 26px;
+    text-align: center;
+    padding: 10px;
+    background-color: lightblue;
+    width: 100%;
+    margin-left: -8px;
+    color: steelblue;
+}
+
+#styleInput {
+    display: inline;
+    color: rgb(69, 67, 67);
+    padding: 5px;
+    border: 1.5px solid;
+    border-radius: 4px;
+    border-color: gray;
+    padding-top: 6px;
+    margin-left: 10px;
+}
+
+#styleInput:focus {
+    border-color: aquamarine;
+    box-shadow: 0px 0px 15px rgb(24, 132, 195);
+}
+
+.link {
+    border: none;
+    border-radius: 5px;
+    background-color: rgb(13, 32, 176);
+    padding: 5px 13px;
+    color: white;
+    text-decoration: none;
+    margin-top: 10px;
+}
+
+.link:active {
+    background-color: rgb(32, 54, 224);
+}
+
+.button {
+    display: block;
+    margin-top: 5px;
+    padding: 5px 10px;
+    background-color: green;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    color: white;
+}
+
+.button:active {
+    background-color: rgb(17, 143, 17);
+}
