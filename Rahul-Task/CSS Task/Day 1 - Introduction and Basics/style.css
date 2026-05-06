@@ -1,0 +1,11 @@
+.custom-tag{
+    padding:10px;
+    color:blue;
+    text-align: center;
+}
+.custom-tag:hover{
+    background-color: lightblue;
+}
+.custom-tag::selection{
+    color:darkcyan;
+}
