@@ -1,0 +1,154 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    font-family: Arial, Helvetica, sans-serif;
+    padding: 0;
+}
+
+.navbar {
+    font-family: cursive;
+    display: flex;
+    justify-content: space-between;
+    background-color: gray;
+}
+
+.navbar .logo {
+    font-size: 1.5rem;
+    font-weight: bold;
+    align-content: center;
+    margin-left: 10px;
+}
+
+.nav {
+    display: flex;
+    font-weight: 500;
+    font-size: 1.2rem;
+}
+
+.nav ul li {
+    display: inline;
+    list-style-type: none;
+}
+
+.nav li a {
+    text-decoration: none;
+    color: black;
+    padding: 10px;
+    margin: 0px 10px;
+    transition: transform 0.3s;
+}
+
+.navbar li:hover {
+    transform: translateY(-3px);
+}
+
+.container {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    justify-content: center;
+    margin: 20px;
+}
+
+.card {
+    font-family: Arial, Helvetica, sans-serif;
+    background-color: white;
+    box-shadow: 0px 1px 10px gray;
+    color: black;
+    padding: 10px;
+    margin: 100px 20px;
+    text-align: center;
+    border-radius: 10px;
+    width: 300px;
+    height: 450px;
+    transition: transform 0.3s;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+}
+
+.img {
+    width: 200px;
+    height: 300px;
+    border-radius: 5px;
+}
+
+.card-body {
+    text-align: start;
+    margin: 0px 10px;
+
+}
+
+
+
+.pos-rel {
+    margin: 0px 50px;
+    height: 100px;
+    background-color: lightsteelblue;
+    text-align: center;
+    align-content: center;
+    position: relative;
+}
+
+.pos-abs1 {
+    width: 80px;
+    height: 80px;
+    background-color: lightcoral;
+    text-align: center;
+    align-content: center;
+    position: absolute;
+    top: 10px;
+    left: 100px;
+}
+
+.pos-abs2 {
+    width: 80px;
+    height: 80px;
+    background-color: lightcoral;
+    text-align: center;
+    align-content: center;
+    position: absolute;
+    bottom: 10px;
+    right: 100px;
+}
+
+.pos-fixed {
+    font-size: 22px;
+    width: 100px;
+    height: 50px;
+    text-align: center;
+    align-content: center;
+    background-color: green;
+    border-radius: 5px;
+    position: fixed;
+    bottom: 10px;
+    right: 10px;
+}
+
+@media (max-width:600px) {
+    .container {
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .navbar .logo {
+        position: absolute;
+        margin-top: 10px;
+    }
+
+    .nav {
+        width: 100%;
+        margin-top: 50px;
+    }
+
+    .nav ul li {
+        display: block;
+        margin-top: 10px;
+        margin-left: -50px;
+    }
+}
