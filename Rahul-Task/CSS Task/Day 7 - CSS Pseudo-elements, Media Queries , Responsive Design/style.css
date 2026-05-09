@@ -1,0 +1,79 @@
+html {
+    height: 100vh;
+    align-content: center;
+    font-family: sans-serif;
+    background: linear-gradient(to top left, rgb(120, 218, 177), rgb(154, 171, 230), rgb(233, 159, 213));
+    background-repeat: no-repeat;
+}
+
+h1 {
+    text-align: center;
+    color: rgb(11, 117, 138)
+}
+
+p {
+    font-size: 1.5rem;
+    background: linear-gradient(to top left, rgb(26, 128, 55), rgb(2, 98, 136), rgb(204, 5, 151));
+    background-clip: text;
+    color: transparent;
+}
+
+h1::before {
+    content: "First Content- ";
+    font-size: 3rem;
+    color: blueviolet;
+}
+
+h1::after {
+    content: " - Last Content.";
+    font-size: 1.5rem;
+    color: chocolate;
+}
+
+p::first-letter {
+    font-size: 3rem;
+    background: linear-gradient(to top left, rgb(26, 128, 55), rgb(2, 98, 136), rgb(204, 5, 151));
+    background-clip: text;
+    color: transparent;
+}
+
+p::first-line {
+    text-decoration: underline 3px purple;
+}
+
+p::selection {
+    background-color: rgb(240, 240, 180);
+    color: red;
+}
+
+.responsive {
+    margin: auto;
+    background: linear-gradient(to top left, rgb(120, 218, 177), rgb(154, 171, 230), rgb(233, 159, 213));
+    border-radius: 10px;
+    padding: 1.5rem;
+    width: 100vh;
+}
+
+@media (max-width:600px) {
+    html {
+        height: auto;
+        background: linear-gradient(to top left, rgb(136, 120, 218), rgb(154, 230, 181), rgb(233, 207, 159));
+        background-repeat: no-repeat;
+    }
+
+    .responsive {
+        background: linear-gradient(to top left, rgb(136, 120, 218), rgb(154, 230, 181), rgb(233, 207, 159));
+    }
+}
+
+@media (width<900px) and (width> 600px) {
+    html {
+        height: auto;
+        background: linear-gradient(to top left, rgb(138, 176, 246), rgb(112, 255, 162), rgba(250, 229, 174, 0.616));
+        background-repeat: no-repeat;
+    }
+
+    .responsive {
+        background: linear-gradient(to top left, rgb(138, 176, 246), rgb(140, 229, 171), rgba(250, 229, 174, 0.616));
+    }
+}
