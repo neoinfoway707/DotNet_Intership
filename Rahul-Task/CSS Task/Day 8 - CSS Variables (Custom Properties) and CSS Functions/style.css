@@ -13,7 +13,7 @@ body {
 }
 
 .container {
-    width: 40%;
+    width: 42%;
     padding: 20px;
     background-color: white;
     color: var(--var-color-primary);
@@ -37,20 +37,38 @@ body {
 }
 
 .container .image1 {
+    border-radius: 5px;
     width: calc(200px - 100px + (100px - 50px + 90px));
     height: clamp(100px, 200px, 250px);
-    filter: blur(10px);
+    margin-right: 10px;
 }
 
 .container .image2 {
+    border-radius: 5px;
     width: 200px;
     height: 200px;
-    filter: brightness(1.2);
     box-shadow: 2px 2px 10px 2px var(--var-color-primary);
+    margin-right: 10px;
+    transition: transform 0.3s;
 }
 
 .container .image3 {
+    border-radius: 5px;
     width: 200px;
     height: 200px;
+    transition: transform 0.3s;
+}
+
+.image1:hover {
+    filter: blur(10px);
+}
+
+.image2:hover {
+    filter: brightness(1.2);
+    transform: scale(0.9);
+}
+
+.image3:hover {
     filter: contrast(2);
+    transform: scale(1.05);
 }
