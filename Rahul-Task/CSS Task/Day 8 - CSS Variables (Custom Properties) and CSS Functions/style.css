@@ -1,0 +1,56 @@
+* {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+:root {
+    --var-bg-primary: rgb(31, 149, 170);
+    --var-color-primary: rgb(24, 104, 231);
+}
+
+body {
+    background-color: var(--var-bg-primary);
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+}
+
+.container {
+    width: 40%;
+    padding: 20px;
+    background-color: white;
+    color: var(--var-color-primary);
+}
+
+.container .other {
+    --var-bg-primary: hsl(101, 93%, 16%);
+    --var-color-other: rgb(158, 188, 147);
+    padding: 5px 20px;
+    background: var(--var-bg-primary);
+    color: var(--var-color-other);
+}
+
+.container h1 {
+    text-shadow: 2px -2px 5px rgb(127, 24, 150), 2px -5px 5px rgb(12, 0, 186);
+}
+
+.other h2 {
+    font-weight: normal;
+    border-bottom: 5px solid var(--var-bg-primary);
+}
+
+.container .image1 {
+    width: calc(200px - 100px + (100px - 50px + 90px));
+    height: clamp(100px, 200px, 250px);
+    filter: blur(10px);
+}
+
+.container .image2 {
+    width: 200px;
+    height: 200px;
+    filter: brightness(1.2);
+    box-shadow: 2px 2px 10px 2px var(--var-color-primary);
+}
+
+.container .image3 {
+    width: 200px;
+    height: 200px;
+    filter: contrast(2);
+}
