@@ -1,0 +1,285 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    color: rgba(0, 0, 0, 0.8);
+}
+
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    min-height: 100vh;
+}
+
+.login {
+    background-color: white;
+    border-radius: 7px;
+    border: 1px solid rgb(198, 198, 198);
+    padding: 3rem;
+}
+
+.margin-bottom {
+    margin-bottom: 1rem;
+}
+
+.label {
+    width: max-content;
+    padding-bottom: 0.5rem;
+}
+
+.text-control {
+    font-size: 14px;
+    width: 100%;
+    border: 1px solid lightgray;
+    padding: 7px 14px;
+    border-radius: 6px;
+    transition: border-color 0.15s ease-in-out, box-shadow 0.12s ease-in-out;
+}
+
+.text-control:focus {
+    outline: 0;
+    border-color: rgba(16, 122, 214, 0.572);
+    box-shadow: 0px 0px 0px 4px rgba(12, 99, 153, 0.262);
+}
+
+.text-center {
+    text-align: center;
+}
+
+.loginbtn {
+    font-size: 17px;
+    border: none;
+    border-radius: 5.5px;
+    padding: 7px 13px;
+    color: white;
+    background-color: rgba(4, 102, 248, 0.927);
+}
+
+.loginbtn:hover {
+    background-color: rgb(5, 90, 218);
+}
+
+.margin-top {
+    margin-top: 1rem;
+}
+
+a {
+    color: rgb(4, 102, 248);
+}
+
+a:hover {
+    color: rgb(5, 82, 198);
+}
+
+
+.registerModal {
+    display: none;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background-color: rgba(0, 0, 0, 0.7);
+    z-index: 1000;
+}
+
+.registerModal:target {
+    display: flex;
+    min-height: 100vh;
+}
+
+.register-dialog {
+    box-sizing: border-box;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+}
+
+.register-dialog .register-content {
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    width: 100%;
+    max-width: 1140px;
+}
+
+.register-body {
+    border-radius: 7px;
+    border: 1px solid lightgray;
+    padding-top: 2rem;
+    background-color: white;
+}
+
+.registerModal:target .register-dialog {
+    animation: disp 0.8s ease-out;
+}
+
+@keyframes disp {
+    from {
+        opacity: 0;
+        transform: translateY(-100%);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.register-body .register-Close {
+    position: absolute;
+    top: -10px;
+    right: 0;
+    margin: 1.5rem;
+    border: none;
+    cursor: pointer;
+    font-size: 1.7rem;
+    background-color: transparent;
+}
+
+.register-Close {
+    text-decoration: none;
+    color: gray;
+}
+
+.register-Close:active {
+    transform: scale(0.9);
+}
+
+.register-Close:hover {
+    color: rgb(85, 84, 84);
+}
+
+.register-form {
+    padding-left: calc(2.5rem - 10px);
+    padding-right: calc(2.5rem - 10px);
+    padding-top: 2rem;
+}
+
+.register-row {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    padding: 0px 25px;
+}
+
+.buttons {
+    text-align: end;
+    margin-right: 2.5rem;
+    margin-top: 1rem;
+    padding-bottom: 2rem;
+}
+
+.buttons .submit {
+    font-size: 17px;
+    border: none;
+    border-radius: 5.5px;
+    padding: 5px 13px;
+    color: white;
+    background-color: rgba(4, 102, 248, 0.927);
+}
+
+.submit:hover {
+    background-color: rgb(5, 90, 218);
+}
+
+.buttons .clear {
+    font-size: 17px;
+    border: none;
+    border-radius: 5.5px;
+    padding: 5px 13px;
+    color: white;
+    background-color: #6c757d;
+    margin-left: 1rem;
+}
+
+.clear:hover {
+    background-color: #5c636a;
+}
+
+.padding-b {
+    padding-bottom: 1.5rem;
+}
+
+.register-col {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    padding: 0px 8px;
+    margin: 5px 0px;
+}
+
+@media screen and (max-width: 575.98px) {
+    .register-col {
+        width: 100%;
+    }
+
+    .register-dialog .register-content {
+        width: 95%;
+        min-width: 300px;
+    }
+
+    .register-dialog {
+        padding-top: 0.5rem;
+    }
+
+}
+
+@media screen and (min-width:576px) {
+
+    .register-col {
+        width: 100%;
+    }
+
+    .register-dialog .register-content {
+        width: 75%;
+    }
+
+    .register-dialog {
+        padding-top: 1.5rem;
+    }
+}
+
+@media screen and (width>=768px) and (width<=1024px) {
+
+    .register-col {
+        width: 50%;
+    }
+
+    .register-dialog .register-content {
+        width: 60%;
+    }
+}
+
+@media screen and (width>=1024px) {
+    .register-col {
+        width: 33%;
+    }
+
+    .register-dialog .register-content {
+        width: 68%;
+    }
+
+    .register-dialog {
+        padding-top: 2rem;
+    }
+}
+
+@media screen and (width>=1528px) {
+    .register-dialog {
+        padding-top: 0rem;
+    }
+}
+
+.form-check {
+    display: block;
+    padding-left: 0.5em;
+}
+
+.form-check-inline {
+    display: inline-block;
+    margin-right: 1rem;
+}
