@@ -2,7 +2,7 @@
 
 namespace C_sharp
 {
-    internal class Program
+    internal class Day_1_Introduction_Data_Types_Variables
     {
         static void Main(string[] args)
         {

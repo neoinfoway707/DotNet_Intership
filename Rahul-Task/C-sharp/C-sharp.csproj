@@ -43,7 +43,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Day 1 - C# - Introduction, Data Types &amp; Variables.cs" />
+    <Compile Include="Daily Task\Day 1-Introduction,Data Types,Variables.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
