@@ -20,8 +20,16 @@ namespace C_sharp.Daily_Task
             }
 
             //Display Data with get and set properties.
-            public String Name { get; set; }
-            public int Age { get; set; }
+            public String Name
+            {
+                get { return this.name; }
+                set { this.name = value; }
+            }
+            public int Age
+            {
+                get { return this.age; }
+                set { this.age = value; }
+            }
 
             //display the data using Methods
             public String GetData()
@@ -34,14 +42,14 @@ namespace C_sharp.Daily_Task
                 Person person = new Person("M.S. Dhoni", 44);
                 //Display the data using Methods
                 Console.WriteLine("\n\nAdded Data with class constructor: \n" + person.GetData());
-                
+
                 //Set new values using get and set properties
                 person.Name = "Arvind Patel";
                 person.Age = 31;
-                
+
                 //Display the data using get and set properties
                 Console.WriteLine("\nAdded Data with get and set properties:");
-                Console.WriteLine($"Name: {person.Name}, Age: {person.Age}");
+                Console.WriteLine($"Name: {person.name}, Age: {person.Age}");
             }
         }
     }
