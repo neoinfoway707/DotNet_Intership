@@ -1,9 +1,0 @@
-<Solution>
-  <Configurations>
-    <BuildType Name="Default" />
-    <Platform Name="Default" />
-  </Configurations>
-  <Folder Name="/Solution Items/">
-    <File Path="Perform CRUD.sql" />
-  </Folder>
-</Solution>
