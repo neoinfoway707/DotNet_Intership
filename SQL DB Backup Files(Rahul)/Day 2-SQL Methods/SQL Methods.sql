@@ -23,17 +23,21 @@ GO
 --	VALUES('Vijay Kumar','IT','Junior Developer',45000.00,'Delhi');
 --GO
 
+SELECT TOP 2 * FROM Employee WHERE City In('Rajkot','Surat') ORDER BY EmployeeName;
+
+SELECT TOP 40 PERCENT * FROM Employee ORDER BY Salary DESC;
+
 SELECT Department,SUM(Salary) AS 'Total Salary' FROM Employee GROUP BY Department;
 
 SELECT City,Count(Department) AS 'Number of Department' FROM Employee GROUP BY City;
 
 SELECT Department, Avg(Salary)  AS 'Average Salary' ,Count(Department) AS 'Total Department' 
 FROM Employee GROUP BY Department;
+GO
 
 SELECT City,MAX(Salary) AS 'Maximum Salary' FROM Employee 
 WHERE Salary > (select AVG(Salary) FROM Employee) 
 GROUP BY City;
-GO
 
 SELECT * FROM Employee WHERE City LIKE 'r%';
 
