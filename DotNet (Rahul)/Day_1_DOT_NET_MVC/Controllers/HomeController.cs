@@ -20,7 +20,6 @@ namespace Day_1_DOT_NET_MVC.Controllers
         {
             return View();
         }
-     
         public IActionResult Error()
         {
             return View();
