@@ -1,0 +1,48 @@
+﻿@model Product
+@{
+    string action = ViewBag.Action ?? string.Empty;
+    ViewData["Title"] = "Update Product";
+}
+@section title {
+    <h2>Update Product Details</h2>
+}
+
+<form method="post" asp-controller="Product" asp-action="@action">
+    <input type="hidden" name="formAction" value="@action" />
+
+    @if (action.ToLower() == "update")
+    {
+        <input type="hidden" asp-for="Id" />
+    }
+    <div class="row">
+        <label asp-for="ProductName" class="col-2">Product Name :</label>
+        <input type="text" class="col-2 form-control w-25" asp-for="ProductName" />
+        <span class=" text-danger col-2" asp-validation-for="ProductName"></span>
+    </div>
+    <br />
+    <div class="row">
+        <label asp-for="Price" class="col-2">Price :</label>
+        <input type="text" class="col-2 form-control w-25" asp-for="Price" />
+        <span class=" text-danger col-2" asp-validation-for="Price"></span>
+    </div>
+    <br />
+    <div class="row">
+        <label asp-for="Category" class="col-2">Categroy :</label>
+        <input type="text" class="col-2 form-control w-25" asp-for="Category" />
+        <span class=" text-danger col-2" asp-validation-for="Category"></span>
+    </div>
+    <br />
+    <span class=" text-danger col-8">
+        @Html.ValidationMessage("Created Product")
+    </span>
+    <br />
+    <br />
+    @if (action.ToLower() == "update")
+    {
+        <button class="btn btn-primary">Update</button>
+    }
+    else
+    {
+        <button class="btn btn-primary">Add</button>
+    }
+</form>

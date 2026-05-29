@@ -1,0 +1,16 @@
+﻿@{
+    ViewData["Title"] = "Error Page";
+}
+@section title {
+    <div class="container my-5 text-center" style="max-width: 500px;">
+        <div class="p-4 bg-light border border-danger-subtle rounded-3 shadow-sm">
+            <h2 class="text-danger fw-bold mb-3">Something Went Wrong</h2>
+            <p class="lead text-secondary">
+                The system encountered an unexpected processing error
+                while handling your request.
+            </p>
+            <a asp-area="" asp-controller="Home" asp-action="Index"
+               class="btn btn-danger btn-sm px-4 mt-2">Return Home</a>
+        </div>
+    </div>
+}
