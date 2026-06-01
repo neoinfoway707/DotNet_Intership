@@ -36,6 +36,7 @@ namespace Day_2_Routing_Action_Filters_in_MVC.Controllers
         public IActionResult Product(Product product)
         {
             ProductRepository.AddProduct(product);
+            TempData["Success"] = "Product added successfully!";
             return RedirectToAction("Products");
         }
     }
