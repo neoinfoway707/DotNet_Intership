@@ -1,0 +1,6 @@
+<Solution>
+  <Project Path="../Application/Application.csproj" Id="190f5e33-6e0d-4c78-8119-172e63a5edb1" />
+  <Project Path="../Domain/Domain.csproj" Id="6f678a42-3d41-4eb5-ab39-3708174d42ac" />
+  <Project Path="../Infrastructure/Infrastructure.csproj" Id="6fe9ec07-2a41-44c9-8cd9-17efcf0d2ec8" />
+  <Project Path="DB Approach CRUD.csproj" />
+</Solution>
