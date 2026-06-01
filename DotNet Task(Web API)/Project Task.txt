@@ -1,0 +1,18 @@
+Creante an Simple Web API Project
+ - CRUD  -- Hard Delete
+ - Code First Approach
+
+Crea
+
+https://niotechone.in/index.php/tasks/view/142
+
+
+
+Cereate Web API project with CQRS Pattern
+
+ - Authentication & Authorization with JWT Token
+ - ApiRoutes
+ - Get POST PUT DELETE (Soft delete)
+ - DB Firsh Approach
+
+ -- controller -- handler -- Service (Business logic)
