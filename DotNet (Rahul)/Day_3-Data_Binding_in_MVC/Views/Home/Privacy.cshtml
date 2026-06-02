@@ -1,0 +1,29 @@
+﻿@{
+    ViewData["Title"] = "Privacy Policy";
+}
+<h1>@ViewData["Title"]</h1>
+
+
+<div class="container mt-4">
+    <div class="alert alert-info">
+        <strong>Privacy Policy:</strong> @ViewData["Message"]
+        <small class="text-muted">Last updated: @DateTime.Now.ToString("MMMM dd, yyyy")</small>
+    </div>
+    <div class="alert alert-warning">
+        <strong>Important:</strong> @ViewBag.PolicyInfo
+    </div>
+    <div class="alert alert-danger">
+        @if (TempData.ContainsKey("Notice"))
+        {
+            <strong>Notice: </strong> @TempData["Notice"]
+        }
+        else
+        {
+            <strong>Notice: </strong>@TempData["PrivacyNotice"]
+        }
+    </div>
+
+    @*Display a one message or Naote Type Message to display info section in use ViewData ,
+        Warning section in use ViewBag and Error section in use TempData.*@
+
+</div>
