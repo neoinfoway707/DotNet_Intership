@@ -1,0 +1,30 @@
+﻿@model List<Product>
+@{
+    ViewData["Title"] = "Product Details";
+}
+@if (Model != null)
+{
+    <div class="container mt-4">
+        <h2 class="mb-4">Product Details</h2>
+        <div class="row">
+            @foreach (var product in Model)
+            {
+                <div class="col-md-4 mb-4">
+                    <div class="card h-100">
+                        <div class="card-body">
+                            <h5 class="card-title">@product.Name</h5>
+                            <p class="card-text"><strong>Price: </strong>@product.Price.ToString("C")</p>
+                            <p class="card-text">@product.Description</p>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+}
+else
+{
+    <div class="alert alert-warning">
+        <strong>Warning: </strong> No product details available.
+    </div>
+}
