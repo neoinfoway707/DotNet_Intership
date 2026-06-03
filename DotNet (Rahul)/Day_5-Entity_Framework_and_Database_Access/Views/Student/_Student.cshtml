@@ -1,0 +1,43 @@
+﻿@model Student
+@{
+    var action = ViewBag.action ?? "";
+}
+@using (Html.BeginForm((string)action, "Student", FormMethod.Post))
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-group">
+        @Html.LabelFor(s => s.Name)
+        @Html.TextBoxFor(s => s.Name, new { @class = "form-control" })
+        @Html.ValidationMessageFor(x => x.Name, "", new { @class = "text-danger" })
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(s => s.Email)
+        @Html.TextBoxFor(s => s.Email, new { @class = "form-control" })
+        @Html.ValidationMessageFor(x => x.Email, "", new { @class = "text-danger" })
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(s => s.Course)
+        @Html.TextBoxFor(s => s.Course, new { @class = "form-control" })
+        @Html.ValidationMessageFor(x => x.Course, "", new { @class = "text-danger" })
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(s => s.Class)
+        @Html.TextBoxFor(s => s.Class, new { @class = "form-control" })
+        @Html.ValidationMessageFor(x => x.Class, "", new { @class = "text-danger" })
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(s => s.TuationFee)
+        @Html.TextBoxFor(s => s.TuationFee, new { @class = "form-control" })
+        @Html.ValidationMessageFor(x => x.TuationFee, "", new { @class = "text-danger" })
+    </div>
+    @if (action.ToLower() == "update")
+    {
+        <button type="submit" class="btn btn-primary mt-5">@action</button>
+    }
+    @if(action.ToLower() == "create")
+    {
+        <button type="submit" class="btn btn-primary mt-5">@action</button>
+
+    }
+}
