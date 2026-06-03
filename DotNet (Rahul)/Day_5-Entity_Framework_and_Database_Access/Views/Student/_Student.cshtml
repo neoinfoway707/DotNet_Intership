@@ -5,7 +5,16 @@
 @using (Html.BeginForm((string)action, "Student", FormMethod.Post))
 {
     @Html.AntiForgeryToken()
+    @if (action.ToLower() == "update")
+    {
+        <h2>Update Student Details</h2>
+    }
+    @if (action.ToLower() == "create")
+    {
+        <h2>Add New Student Details</h2>
 
+    }
+    <br />
     <div class="form-group">
         @Html.LabelFor(s => s.Name)
         @Html.TextBoxFor(s => s.Name, new { @class = "form-control" })
@@ -35,7 +44,7 @@
     {
         <button type="submit" class="btn btn-primary mt-5">@action</button>
     }
-    @if(action.ToLower() == "create")
+    @if (action.ToLower() == "create")
     {
         <button type="submit" class="btn btn-primary mt-5">@action</button>
 

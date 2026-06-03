@@ -4,20 +4,20 @@
 }
 <div class="container mt-4">
     <h2>Student Management</h2>
-        @Html.ActionLink("Add", "Create", "Student" ,null,new { @class = "btn btn-primary" })
+            @if(Model != null && Model.Count > 0){
 
-@if(Model != null && Model.Count > 0){
     <table class="table table-striped table-hover table-responsive">
         <thead>
             <tr>
                 <th>Student Name</th>
                 <th>Email Address</th>
-                <th>Course Name</th>
-                <th>Class Name</th>
+                <th>Course</th>
+                <th>Class</th>
                 <th>Tuation Fee</th>
                 <th>Action</th>
             </tr>
         </thead>
+
         <tbody>
             @foreach (Student student in Model)
             {
@@ -39,14 +39,15 @@
             }
         </tbody>
     </table>
-}
-else
-{
-    <div class="alert alert-info shadow-sm rounded p-4 text-center mt-3" role="alert">
-            <h4 class="alert-heading">No Records Found!</h4>
-            <p class="mb-0 text-muted">There are currently no students registered in the system.</p>
-            <hr>
-            <p class="mb-0">Click the <strong>Add New Student</strong> button above to create your first record.</p>
+    }     
+    else
+    {
+        <div class="alert alert-info shadow-sm rounded p-4 text-center mt-3" role="alert">
+                <h4 class="alert-heading">No Records Found!</h4>
+                <p class="mb-0 text-muted">There are currently no students registered in the system.</p>
+                <hr>
+                <p class="mb-0">Click the <strong>Add New Student</strong> button above to create your first record.</p>
         </div>
-}
+    }
+    @Html.ActionLink("Add", "Create", "Student" ,null,new { @class = "btn btn-primary" })
 </div>

@@ -23,7 +23,7 @@ namespace Day_5_Entity_Framework_Database_Access.Models
         public string Class { get; set; }
         
         [Required(ErrorMessage = "Tuation Fee required.")]
-        [Range(100000,500000,ErrorMessage ="Tuation Fee must between 100000 to 500000 range.")]
+        [Range(10000,100000,ErrorMessage ="Tuation Fee must between 100000 to 500000 range.")]
         [Column(TypeName ="decimal(8,2)")]
         public decimal TuationFee { get; set; }
     }
