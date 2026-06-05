@@ -1,0 +1,4 @@
+<Solution>
+  <Project Path="../Test_Case_Day_7-Project/Test_Case_Day_7-Project.csproj" />
+  <Project Path="Day_7-Web_API_in_MVC.csproj" />
+</Solution>
