@@ -1,0 +1,42 @@
+@model IEnumerable<Day_8_CodeFirst_Relationships_in_MVC.Models.Book>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>@Html.DisplayNameFor(model => model.Title)</th>
+            <th>@Html.DisplayNameFor(model => model.Description)</th>
+            <th>@Html.DisplayNameFor(model => model.year)</th>
+            <th>@Html.DisplayNameFor(model => model.Author)</th>
+            <th>Categories</th>
+            <th>Action</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@Html.DisplayFor(modelItem => item.Title)</td>
+                <td>@Html.DisplayFor(modelItem => item.Description)</td>
+                <td>@Html.DisplayFor(modelItem => item.year)</td>
+                <td>@Html.DisplayFor(modelItem => item.Author.Name)</td>
+                <td>
+                    @string.Join(", ", item.Categories?.Select(c => c.Name) ?? Enumerable.Empty<string>())
+                </td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
+                    <a asp-action="Delete" asp-route-id="@item.Id"
+                       onclick="return confirm('Are you sure you want to delete this Book.')">Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

@@ -1,0 +1,70 @@
+﻿@model Book
+
+@{
+    var action = ViewBag.action;
+}
+
+@if (ViewBag.action?.ToString().ToLower() == "create")
+{
+    <h1>Create</h1>
+}
+else
+{
+    <h1>Edit</h1>
+}
+<h4>Book</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="@action">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="Title" class="control-label"></label>
+                <input asp-for="Title" class="form-control" />
+                <span asp-validation-for="Title" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Description" class="control-label"></label>
+                <input asp-for="Description" class="form-control" />
+                <span asp-validation-for="Description" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="year" class="control-label"></label>
+                <input asp-for="year" class="form-control" />
+                <span asp-validation-for="year" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Author" class="control-label"></label>
+                <select asp-for="AuthorId" class="form-control" asp-items="ViewBag.AuthorId"></select>
+            </div>
+            <div class="form-group">
+                <label class="control-label">Categories</label>
+                <select name="selectedCategories"
+                        asp-items='ViewData["Categories"] as MultiSelectList'
+                        class="form-control"
+                        multiple="multiple">
+                </select>
+            </div>
+            <div class="form-group">
+                @if (ViewBag.action?.ToString().ToLower() == "create")
+                {
+                    <input type="submit" value="Create" class="btn btn-primary" />
+                }
+                else
+                {
+                    <input type="submit" value="Save" class="btn btn-primary" />
+                }
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}
