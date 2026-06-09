@@ -1,0 +1,66 @@
+﻿@model Appointment
+@{
+    var action = ViewBag.action;
+}
+
+@if (action.ToLower() == "create")
+{
+    <h1>Add New Appointment</h1>
+}
+@if (action.ToLower() == "edit")
+{
+    <h1>Edit Appointment</h1>
+}
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="@action">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group mb-2">
+                <label asp-for="PatientName" class="control-label"></label>
+                <input asp-for="PatientName" class="form-control" />
+                <span asp-validation-for="PatientName" class="text-danger"></span>
+            </div>
+            <div class="form-group mb-2">
+                <label asp-for="AppointmentTime" class="control-label"></label>
+                <input asp-for="AppointmentTime" type="datetime-local" class="form-control" />
+                <span asp-validation-for="AppointmentTime" class="text-danger"></span>
+            </div>
+            <div class="form-group mb-2">
+                <label asp-for="Reason" class="control-label"></label>
+                <input asp-for="Reason" class="form-control" />
+                <span asp-validation-for="Reason" class="text-danger"></span>
+            </div>
+            <div class="form-group mb-2">
+                <label asp-for="DoctorId" class="control-label"></label>
+                <select asp-for="DoctorId" class="form-control"
+                        asp-items='ViewData["DoctorId"] as SelectList'>
+                        <option value="">--Select Doctor--</option>
+                </select>
+                <span asp-validation-for="DoctorId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+
+                @if (action.ToLower() == "create")
+                {
+                    <input type="submit" value="Create" class="btn btn-primary" />
+                }
+                @if (action.ToLower() == "edit")
+                {
+                    <input type="hidden" asp-for="Id" />
+                    <input type="submit" value="Save" class="btn btn-primary" />
+                }
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}
