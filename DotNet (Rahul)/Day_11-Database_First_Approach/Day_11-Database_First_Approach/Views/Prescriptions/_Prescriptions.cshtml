@@ -1,0 +1,67 @@
+﻿@model Prescription
+
+@{
+    var action = ViewBag.action;
+}
+
+@if (action.ToLower() == "edit")
+{
+    <h1>Edit Prescription Details</h1>
+}
+@if (action.ToLower() == "create")
+{
+    <h1>Create a new Prescription</h1>
+}
+
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="@action">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group mb-2">
+                <label asp-for="PatientName" class="control-label"></label>
+                <input asp-for="PatientName" class="form-control" />
+                <span asp-validation-for="PatientName" class="text-danger"></span>
+            </div>
+            <div class="form-group mb-2">
+                <label asp-for="DoctorName" class="control-label"></label>
+                <input asp-for="DoctorName" class="form-control" />
+                <span asp-validation-for="DoctorName" class="text-danger"></span>
+            </div>
+            <div class="form-group mb-2">
+                <label asp-for="PrescriptionDate" class="control-label"></label>
+                <input asp-for="PrescriptionDate" class="form-control" />
+                <span asp-validation-for="PrescriptionDate" class="text-danger"></span>
+            </div>
+            <div class="form-group mb-2">
+                <label asp-for="MedicineId" class="control-label"></label>
+                <select asp-for="MedicineId" class="form-control" asp-items="ViewBag.MedicineId">
+                    <option value="">--Select Medicine--</option>
+                </select>
+                <span asp-validation-for="MedicineId" class="text-danger"></span>
+            </div>
+            <br />
+            <div class="form-group mb-2">
+                @if (action.ToLower() == "edit")
+                {
+                    <input type="submit" value="Save" class="btn btn-primary" />
+                    <input type="hidden" asp-for="Id" />
+                }
+                @if (action.ToLower() == "create")
+                {
+                    <input type="submit" value="Create" class="btn btn-primary" />
+                }
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

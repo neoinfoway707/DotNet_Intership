@@ -1,0 +1,103 @@
+@model IEnumerable<Day_11_Database_First_Approach.Models.Prescription>
+
+@{
+    ViewData["Title"] = "Index";
+    var isDeleteMedicine = false;
+    var isDeletePrescription = false;
+    var dispMessage = false;
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>@Html.DisplayNameFor(model => model.PatientName)</th>
+            <th>@Html.DisplayNameFor(model => model.DoctorName)</th>
+            <th>@Html.DisplayNameFor(model => model.PrescriptionDate)</th>
+            <th>@Html.DisplayNameFor(model => model.Medicine)</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                @if (item.Medicine.IsDeleted == false && item.IsDeleted == false)
+                {
+                    <td>@Html.DisplayFor(modelItem => item.PatientName)</td>
+                    <td>@Html.DisplayFor(modelItem => item.DoctorName)</td>
+                    <td>@Html.DisplayFor(modelItem => item.PrescriptionDate)</td>
+                    <td>@Html.DisplayFor(modelItem => item.Medicine.Name)</td>
+                    <td>
+                        <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
+                        <a asp-action="Delete" asp-route-id="@item.Id"
+                           onclick="return confirm('Are you sure you want to delete this Prescription.');">Delete</a>
+                    </td>
+                }
+            </tr>
+            isDeleteMedicine = Model.Any(x => x.Medicine.IsDeleted);
+            isDeletePrescription = Model.Any(x => x.IsDeleted);
+        }
+    </tbody>
+</table>
+
+@if (isDeleteMedicine || isDeletePrescription)
+{
+    <br />
+    <h4 class="mt-5">Deleted Prescriptions</h4>
+    <hr />
+    <table class="table">
+        <thead>
+            <tr>
+                <th>@Html.DisplayNameFor(model => model.PatientName)</th>
+                <th>@Html.DisplayNameFor(model => model.DoctorName)</th>
+                <th>@Html.DisplayNameFor(model => model.PrescriptionDate)</th>
+                <th>@Html.DisplayNameFor(model => model.Medicine)</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    @if (item.Medicine.IsDeleted == true || item.IsDeleted == true)
+                    {
+                        <td>@Html.DisplayFor(modelItem => item.PatientName)</td>
+                        <td>@Html.DisplayFor(modelItem => item.DoctorName)</td>
+                        <td>@Html.DisplayFor(modelItem => item.PrescriptionDate)</td>
+                        <td>@Html.DisplayFor(modelItem => item.Medicine.Name)</td>
+                        <td>
+                            <form method="post">
+                                @if (item.Medicine.IsDeleted == true && item.IsDeleted == false)
+                                {
+                                    dispMessage = true;
+                                }
+                                <a asp-action="Retrieve" asp-route-id="@item.Id"
+                                   onclick="medicineDeleted('@item.Medicine.Name',@(dispMessage ? "true" : "false"));">
+                                    Retrive
+                                </a>
+                            </form>
+                        </td>
+
+                    }
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+
+@section scripts {
+
+    <script>
+        function medicineDeleted(name,isDelete)
+        {
+            if(isDelete){
+                alert("This preseception's Medicine "+name+" is Deleted");
+            }
+        }
+    </script>
+}

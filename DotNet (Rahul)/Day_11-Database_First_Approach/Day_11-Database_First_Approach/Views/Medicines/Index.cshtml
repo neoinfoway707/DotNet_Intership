@@ -1,0 +1,79 @@
+@model IEnumerable<Day_11_Database_First_Approach.Models.Medicine>
+
+@{
+    ViewData["Title"] = "Index";
+    var isDelete = false;
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table mb-5">
+    <thead>
+        <tr>
+            <th>@Html.DisplayNameFor(model => model.Name)</th>
+            <th>@Html.DisplayNameFor(model => model.Category)</th>
+            <th>@Html.DisplayNameFor(model => model.Price)</th>
+            <th>@Html.DisplayNameFor(model => model.Stock)</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                @if (item.IsDeleted == false)
+                {
+                    <td>@Html.DisplayFor(modelItem => item.Name)</td>
+                    <td>@Html.DisplayFor(modelItem => item.Category)</td>
+                    <td>@item.Price.ToString("C", new System.Globalization.CultureInfo("en-US"))</td>
+                    <td>@Html.DisplayFor(modelItem => item.Stock)</td>
+                    <td>
+                        <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
+                        <a asp-action="Delete" asp-route-id="@item.Id"
+                        onclick="return confirm('Are you sure you want to delete this Medicine.');">Delete</a>
+                    </td>
+                }
+            </tr>
+            isDelete = Model.Any(x => x.IsDeleted);
+        }
+    </tbody>
+</table>
+@if (isDelete)
+{
+    <br />
+    <h4 class="mt-5">Deleted Madicines</h4>
+    <hr />
+    <table class="table">
+        <thead>
+            <tr>
+                <th>@Html.DisplayNameFor(model => model.Name)</th>
+                <th>@Html.DisplayNameFor(model => model.Category)</th>
+                <th>@Html.DisplayNameFor(model => model.Price)</th>
+                <th>@Html.DisplayNameFor(model => model.Stock)</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    @if (item.IsDeleted == true)
+                    {
+                        <td>@Html.DisplayFor(modelItem => item.Name)</td>
+                        <td>@Html.DisplayFor(modelItem => item.Category)</td>
+                        <td>@item.Price.ToString("C", new System.Globalization.CultureInfo("en-US"))</td>
+                        <td>@Html.DisplayFor(modelItem => item.Stock)</td>
+                        <td>
+                            <form method="post">
+                                <a asp-action="Retrive" asp-route-id="@item.Id">Retrive</a>
+                            </form>
+                        </td>
+                    }
+                </tr>
+            }
+        </tbody>
+    </table>
+}
