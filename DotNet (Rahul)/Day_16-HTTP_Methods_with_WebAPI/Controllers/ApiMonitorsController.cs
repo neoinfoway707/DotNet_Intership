@@ -1,5 +1,4 @@
-﻿using Day_15_Validation_and_Routing_with_WebAPI.Controllers;
-using Day_16_HTTP_Methods_with_WebAPI.Dtos;
+﻿using Day_16_HTTP_Methods_with_WebAPI.Dtos;
 using Day_16_HTTP_Methods_with_WebAPI.Models;
 using Day_16_HTTP_Methods_with_WebAPI.Services;
 using Day_16_HTTP_Methods_with_WebAPI.Wrapper;
@@ -47,9 +46,6 @@ namespace Day_16_HTTP_Methods_with_WebAPI.Controllers
         {
             try
             {
-                if (apiMonitorDto == null)
-                    return BadRequest(new ApiResponse<ApiMonitor>("Must fill all ApiMonitor details."));
-
                 var add = _service.CreateApiMonitor(apiMonitorDto);
                 var wrappedResponse = new ApiResponse<ApiMonitor>(add, "Record created successfully.");
                 return CreatedAtAction(nameof(GetApiMonitorById), new { id = add.Id }, wrappedResponse);
@@ -66,8 +62,6 @@ namespace Day_16_HTTP_Methods_with_WebAPI.Controllers
         {
             try
             {
-                if (apiMonitorDto == null)
-                    return BadRequest(new ApiResponse<ApiMonitor>("Must fill all ApiMonitor details."));
                 var update = _service.UpdateApiMonitor(id, apiMonitorDto);
                 if (update == null)
                     return NotFound(new ApiResponse<ApiMonitor>("Given ApiMonitor Data Not found."));
