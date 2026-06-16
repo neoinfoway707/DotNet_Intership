@@ -23,7 +23,5 @@ namespace Day_19_Working_with_EF_Core_in_WebAPI.Dtos
         [StringLength(100, ErrorMessage = "Destination Port name must be between 3 and 100 characters.")]
         [RegularExpression(@"^[a-zA-Z\s,.-]+$", ErrorMessage = "Destination Port can only contain letters, spaces, hyphens, periods, or commas.")]
         public string DestinationPort { get; set; } = string.Empty;
-
-        public bool IsDeleted { get; set; } = false;
     }
 }

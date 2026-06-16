@@ -51,7 +51,7 @@ namespace Day_19_Working_with_EF_Core_in_WebAPI.Services
             find.DestinationPort = smartContainer.DestinationPort;
             await _context.SaveChangesAsync();
 
-            return smartContainer;
+            return find;
         }
 
         public async Task<bool> DeleteSmartContainerById(int id)

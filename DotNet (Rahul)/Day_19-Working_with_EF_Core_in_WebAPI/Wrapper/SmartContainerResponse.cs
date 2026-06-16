@@ -16,10 +16,10 @@
         }
         public SmartContainerResponse(string Message, List<string> Errrors = null)
         {
-            Success = true;
-            Data = Data;
+            Success = false;
+            Data = default(T);
             this.Message = Message;
-            this.Errors = null;
+            this.Errors = Errors;
         }
     }
 }
