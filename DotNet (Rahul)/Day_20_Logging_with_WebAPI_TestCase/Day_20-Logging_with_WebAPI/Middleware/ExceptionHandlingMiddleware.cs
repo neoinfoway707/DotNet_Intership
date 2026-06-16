@@ -18,7 +18,7 @@ namespace Day_20_Logging_with_WebAPI.Middleware
                 context.Response.ContentType = "application/json";
                 context.Response.StatusCode = StatusCodes.Status500InternalServerError;
                 
-                var wrapperResponse = new SmartContainerResponse<SmartContainer>("Something went wrong on our end while fetching the Alert Data.", new List<string> { ex.Message });
+                var wrapperResponse = new SmartContainerResponse<SmartContainer>("Something went wrong on our end while fetching the SmartContainer Data.", new List<string> { ex.Message });
                 
                 var jsonSerialize = System.Text.Json.JsonSerializer.Serialize(wrapperResponse);
                 await context.Response.WriteAsync(jsonSerialize);
