@@ -8,7 +8,7 @@ namespace Day_18_Authentication_and_Authorization_in_Web_APIs.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class AuthControllerController(ITokenService _service) : ControllerBase
+    public class AuthController(ITokenService _service) : ControllerBase
     {
         private static List<User> _users = new List<User>{
             new User { Username = "admin", Password = "admin123", Role = "Admin" },
