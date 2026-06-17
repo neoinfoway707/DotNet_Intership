@@ -80,7 +80,7 @@ namespace Day_21_CRUD_with_WebAPI.Repositories
             }
             catch (Exception ex)
             {
-                _logger.LogError(ex, "Failed to create track {Title}", findTrack.Title);
+                _logger.LogError(ex, "Failed to update track {Title}", findTrack.Title);
                 throw;
             }
         }
@@ -107,7 +107,7 @@ namespace Day_21_CRUD_with_WebAPI.Repositories
             }
             catch (Exception ex)
             {
-                _logger.LogError(ex, "Failed to create track {Title}", findTrack.Title);
+                _logger.LogError(ex, "Failed to delete track {Title}", findTrack.Title);
                 throw;
             }
         }
