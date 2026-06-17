@@ -70,7 +70,7 @@ namespace Day_22_Implement_Login_functionality_with_WebAPI.Repositories
             {
                 using var trans = await _context.Database.BeginTransactionAsync();
                 GetUser.Username = userDto.Username;
-                GetUser.PasswordHash = userDto.Password;
+                GetUser.PasswordHash = BCrypt.Net.BCrypt.HashPassword(userDto.Password);
                 await _context.SaveChangesAsync();
                 await trans.CommitAsync();
 
