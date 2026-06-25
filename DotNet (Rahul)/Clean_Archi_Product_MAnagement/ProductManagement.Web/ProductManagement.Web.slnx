@@ -1,0 +1,7 @@
+<Solution>
+  <Project Path="../ProductManagement.Application/ProductManagement.Application.csproj" />
+  <Project Path="../ProductManagement.Domain/ProductManagement.Domain.csproj" />
+  <Project Path="../ProductManagement.Infrastructure/ProductManagement.Infrastructure.csproj" />
+  <Project Path="../ProductManagement.WebApi/ProductManagement.WebApi.csproj" Id="e4540b44-afe8-4bb7-828e-6f57eca7a83c" />
+  <Project Path="ProductManagement.Web.csproj" />
+</Solution>

@@ -1,0 +1,133 @@
+﻿@model RequestViewModel
+@{
+    ViewData["Title"] = "Create Product";
+}
+
+<h1>Create a new Product</h1>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form id="createProduct" enctype="multipart/form-data">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+            <div class="form-group mb-2">
+                <label asp-for="Name" class="control-label"></label>
+                <input asp-for="Name" id="productName" class="form-control" />
+                <span asp-validation-for="Name" class="text-danger"></span>
+            </div>
+            <div class="form-group mb-2">
+                <label asp-for="Description" class="control-label"></label>
+                <input asp-for="Description" id="productDescription" class="form-control" />
+                <span asp-validation-for="Description" class="text-danger"></span>
+            </div>
+            <div class="form-group mb-2">
+                <label asp-for="Sku" class="control-label"></label>
+                <input asp-for="Sku" id="productSku" class="form-control" />
+                <span asp-validation-for="Sku" class="text-danger"></span>
+            </div>
+            <div class="form-group mb-2">
+                <label asp-for="Price" class="control-label"></label>
+                <input asp-for="Price" id="productPrice" class="form-control" type="text" step="0.01" />
+                <span asp-validation-for="Price" class="text-danger"></span>
+            </div>
+            <div class="form-group mb-2">
+                <label asp-for="Stock" class="control-label"></label>
+                <input asp-for="Stock" id="productStock" class="form-control" type="number" />
+                <span asp-validation-for="Stock" class="text-danger"></span>
+            </div>
+
+            <div class="form-group mb-2">
+                <label asp-for="ImageFile" class="control-label">Product Image</label>
+                <input asp-for="ImageFile" id="imageFileInput" class="form-control"
+                       type="file" accept="image/*" onchange="previewImage(this)" />
+                <span asp-validation-for="ImageFile" class="text-danger"></span>
+
+                @if (TempData["ErrorMessage"] != null)
+                {
+                    <p class="text-danger mt-1">@TempData["ErrorMessage"]</p>
+                }
+                <div class="mt-2">
+                    <img id="imagePreview"
+                         src="/images/no-image.png"
+                         alt="Product Image Preview"
+                         class="img-thumbnail"
+                         style="max-width: 200px; max-height: 200px; object-fit: cover;" />
+                </div>
+            </div>
+
+            <div class="form-group mb-2">
+                <input type="submit" value="Create" class="btn btn-primary" />
+                <a asp-action="Index" class="btn btn-secondary">Back to List</a>
+            </div>
+        </form>
+    </div>
+</div>
+
+<script>
+    function previewImage(input) {
+        const preview = document.getElementById("imagePreview");
+        if (input.files && input.files[0]) {
+            const reader = new FileReader();
+            reader.onload = function (e) {
+                preview.src = e.target.result;
+            }
+            reader.readAsDataURL(input.files[0]);
+        }
+    }
+</script>
+@section Scripts {
+    @await Html.PartialAsync("_ValidationScriptsPartial")
+    <script>
+        const apiBaseUrl = "https://localhost:7039/";
+
+        $(document).ready(function () {
+            $.validator.unobtrusive.parse("#updateProduct");
+
+            $("#createProduct").on("submit", function (e) {
+                e.preventDefault();
+                var form = $(this);
+                if (!form.valid()) {
+                    return false;
+                }
+                var fileInput = $("#imageFileInput")[0].files[0];
+                if (!fileInput || fileInput == null)
+                {
+                    alert("Please select a product image before creating.");
+                    return false;
+                }
+                var formData = new FormData();
+                formData.append("Name", $("#productName").val());
+                formData.append("Description", $("#productDescription").val());
+                formData.append("Sku", $("#productSku").val());
+                formData.append("Price", $("#productPrice").val());
+                formData.append("Stock", $("#productStock").val());
+                formData.append("ImageFile", fileInput);
+
+                $.ajax({
+                    url: apiBaseUrl + "api/products",
+                    type: "POST",
+                    data: formData,
+                    processData: false,
+                    contentType: false,
+                    success: function (response) {
+                        if (response.success) {
+                            alert(response.message || "Product created successfully.");
+                            window.location.href = "/Product";
+                        }
+                        else {
+                            alert("Failed to save product :" + response.message);
+                        }
+                    },
+                    error: function (xhr, status, error) {
+                        console.error("Ajax insertion Failure Details: " + xhr);
+                        if (xhr.responseJSON && xhr.responseJSON.message) {
+                            alert(xhr.responseJSON.message);
+                        } else {
+                            alert("An unexpected error occurred while transmitting data to the server.");
+                        }
+                    }
+                });
+            });
+        });
+    </script>
+}
