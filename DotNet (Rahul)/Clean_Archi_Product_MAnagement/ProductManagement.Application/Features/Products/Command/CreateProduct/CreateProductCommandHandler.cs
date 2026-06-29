@@ -1,10 +1,11 @@
 ﻿using MediatR;
 using ProductManagement.Application.Interfaces.Repositories;
 using ProductManagement.Domain.Entities;
+using System.Diagnostics.CodeAnalysis;
 
 namespace ProductManagement.Application.Features.Products.Command.CreateProduct
 {
-    public class CreateProductCommandHandler(IProductRepository repository) : IRequestHandler<CreateProductCommand,int>
+    public class CreateProductCommandHandler(IProductRepository repository) : IRequestHandler<CreateProductCommand, int>
     {
         private readonly IProductRepository _repo = repository;
 
@@ -20,7 +21,9 @@ namespace ProductManagement.Application.Features.Products.Command.CreateProduct
                 ImagePath = request.ImagePath,
                 CreatedAt = DateTime.UtcNow
             };
-            await _repo.CreateProduct(product);
+            var add = await _repo.CreateUpdateProduct("insert", product);
+            if (!add)
+                return 0;
             return product.Id;
         }
     }

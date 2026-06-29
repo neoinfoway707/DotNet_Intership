@@ -56,6 +56,10 @@ namespace ProductManagement.WebApi.Controller
                 }
                 var command = ApiMapper.ToCreateCommand(request, path);
                 var result = await _mediator.Send(command);
+                
+                if (result < 1)
+                    return BadRequest("Failed to create a new Product.");
+
                 var wrapperResponse = new ProductResponse<int>(result, "New product created successfully.");
                 _logger.LogInformation("Product '{Name}' created successfully with ID {Id}.", request.Name, result);
                 return CreatedAtAction(nameof(GetProductByIdAsync), new { id = result }, wrapperResponse);

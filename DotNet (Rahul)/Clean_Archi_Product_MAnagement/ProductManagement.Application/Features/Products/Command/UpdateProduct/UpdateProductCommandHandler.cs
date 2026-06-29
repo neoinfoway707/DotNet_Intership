@@ -4,7 +4,7 @@ using ProductManagement.Domain.Entities;
 
 namespace ProductManagement.Application.Features.Products.Command.UpdateProduct
 {
-    public class UpdateProductCommandHandler(IProductRepository repository) : IRequestHandler<UpdateProductCommand,bool>
+    public class UpdateProductCommandHandler(IProductRepository repository) : IRequestHandler<UpdateProductCommand, bool>
     {
         private readonly IProductRepository _repo = repository;
 
@@ -20,8 +20,8 @@ namespace ProductManagement.Application.Features.Products.Command.UpdateProduct
                 Stock = request.Stock,
                 ImagePath = request.ImagePath
             };
-            
-            var update = await _repo.UpdateProduct(product.Id,product);
+
+            var update = await _repo.CreateUpdateProduct("update", product, product.Id);
             if (!update)
                 return false;
             return true;

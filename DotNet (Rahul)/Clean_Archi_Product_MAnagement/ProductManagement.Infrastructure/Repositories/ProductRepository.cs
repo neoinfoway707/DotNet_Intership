@@ -1,12 +1,10 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.Data.SqlClient;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
-using ProductManagement.Application.Common.Dtos;
 using ProductManagement.Application.Interfaces.Repositories;
-using ProductManagement.Application.Mappers;
 using ProductManagement.Domain.Entities;
 using ProductManagement.Infrastructure.Data;
-using System.Collections;
-using System.Diagnostics;
+using System.Runtime.CompilerServices;
 
 namespace ProductManagement.Infrastructure.Repositories
 {
@@ -22,7 +20,16 @@ namespace ProductManagement.Infrastructure.Repositories
         public async Task<Product?> GetProductById(int id)
         {
             _logger.LogInformation("Querying database for active Product Id {Id}", id);
-            var getProduct = await _context.Products.FirstOrDefaultAsync(p => p.Id == id && !p.IsDeleted);
+
+            var getProduct = await _context.Products
+                .Where(p => p.Id == id && !p.IsDeleted)
+                .FirstOrDefaultAsync();
+
+            //var getProduct = await _context.Products
+            //    .FromSqlRaw("SELECT * FROM Products WHERE Id=@id", new SqlParameter("@id", id))
+            //    .FirstOrDefaultAsync();
+
+            //var getProduct = await _context.Products.FirstOrDefaultAsync(p => p.Id == id && !p.IsDeleted);
             if (getProduct == null)
             {
                 _logger.LogWarning("Product Id {Id} not found in database", id);
@@ -30,64 +37,75 @@ namespace ProductManagement.Infrastructure.Repositories
             }
             return getProduct;
         }
-
-        public async Task CreateProduct(Product product)
+        public async Task<bool> CreateUpdateProduct(string operation, Product product, int? id = null)
         {
-            _logger.LogInformation("Saving a new Product {Name} to database.", product.Name);
-            try
+            if (operation.ToLower() == "insert" && id == null)
             {
-                using var trans = await _context.Database.BeginTransactionAsync();
+                _logger.LogInformation("Saving a new Product {Name} to database.", product.Name);
+                try
+                {
+                    using var trans = await _context.Database.BeginTransactionAsync();
 
-                await _context.Products.AddAsync(product);
-                await _context.SaveChangesAsync();
-                await trans.CommitAsync();
-                _logger.LogInformation("Product {Name} saving with Id {Id}", product.Name, product.Id);
+                    await _context.Products.AddAsync(product);
+                    await _context.SaveChangesAsync();
+                    await trans.CommitAsync();
+                    _logger.LogInformation("Product {Name} saving with Id {Id}", product.Name, product.Id);
+                }
+                catch (Exception ex)
+                {
+                    _logger.LogError(ex, "Failed to create Product {Title}", product.Name);
+                    throw;
+                }
             }
-            catch (Exception ex)
+            else if (operation.ToLower() == "update" && id != null)
             {
-                _logger.LogError(ex, "Failed to create Product {Title}", product.Name);
-                throw;
+                _logger.LogInformation("Querying database to update Product with Id {Id}", id);
+
+                var getProduct = await _context.Products
+                    .Where(p => p.Id == id && !p.IsDeleted)
+                    .FirstOrDefaultAsync();
+
+                if (getProduct == null)
+                {
+                    _logger.LogWarning("Product Id {Id} not found in database", id);
+                    return false;
+                }
+
+                try
+                {
+                    using var trans = await _context.Database.BeginTransactionAsync();
+                    _context.Entry(getProduct).CurrentValues.SetValues(product);
+
+                    if (string.IsNullOrEmpty(product.ImagePath))
+                        _context.Entry(getProduct).Property(p => p.ImagePath).IsModified = false;
+
+                    _context.Entry(getProduct).Property(p => p.CreatedAt).IsModified = false;
+                    _context.Entry(getProduct).Property(p => p.IsDeleted).IsModified = false;
+
+                    await _context.SaveChangesAsync();
+                    await trans.CommitAsync();
+
+                    _logger.LogInformation("Product Id {Id} Updated Successfully", getProduct.Id);
+                }
+                catch (Exception ex)
+                {
+                    _logger.LogError(ex, "Failed to Update Product {Title}", getProduct.Name);
+                    throw;
+                }
             }
-        }
-
-        public async Task<bool> UpdateProduct(int id, Product product)
-        {
-            _logger.LogInformation("Querying database to update Product with Id {Id}", id);
-
-            // 1. Fetch the tracked entity from the database
-            var getProduct = await _context.Products.FirstOrDefaultAsync(p => p.Id == id && !p.IsDeleted);
-            if (getProduct == null)
+            else
             {
-                _logger.LogWarning("Product Id {Id} not found in database", id);
+                _logger.LogError("Failed to execute {name} command ", operation);
                 return false;
             }
-
-            try
-            {
-                using var trans = await _context.Database.BeginTransactionAsync();
-                _context.Entry(getProduct).CurrentValues.SetValues(product);
-
-                if (string.IsNullOrEmpty(product.ImagePath))
-                    _context.Entry(getProduct).Property(p => p.ImagePath).IsModified = false;
-
-                _context.Entry(getProduct).Property(p => p.CreatedAt).IsModified = false;
-                _context.Entry(getProduct).Property(p => p.IsDeleted).IsModified = false;
-
-                await _context.SaveChangesAsync();
-                await trans.CommitAsync();
-
-                _logger.LogInformation("Product Id {Id} Updated Successfully", getProduct.Id);
-                return true;
-            }
-            catch (Exception ex)
-            {
-                _logger.LogError(ex, "Failed to Update Product {Title}", getProduct.Name);
-                throw;
-            }
+            return true;
         }
         public async Task<bool> DeleteProduct(int id)
         {
-            var getProduct = await _context.Products.FirstOrDefaultAsync(p => p.Id == id && !p.IsDeleted);
+            var getProduct = await _context.Products
+               .Where(p => p.Id == id && !p.IsDeleted)
+               .FirstOrDefaultAsync();
+
             if (getProduct == null)
             {
                 _logger.LogWarning("Product Id {Id} not found in database", id);
